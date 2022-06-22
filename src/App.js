@@ -1,24 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+
+// var/const/letの違い
+// var: 再宣言、再代入可能
+// let: 再宣言不可、再代入可能
+// const: 再宣言・再代入不可
+const title = "React";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+  return(
+    <div>
+      <h1>Hello</h1>
+    </div>    
   );
 }
 
