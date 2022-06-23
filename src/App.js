@@ -1,21 +1,5 @@
 import React from 'react';
 
-// var/const/letの違い
-// var: 再宣言、再代入可能
-// let: 再宣言不可、再代入可能
-// const: 再宣言・再代入不可
-// HtmlFor: for attribute in HTML
-const title = "React";
-const welcome = {
-  greeting: 'Hey',
-  title: 'React',
-};
-const element = <h1>Hello, welcome! {welcome.title}</h1>;
-
-function getTitle(title) {
-  return title;
-}
-
 const list = [
   {
     title: 'React',
@@ -36,15 +20,27 @@ const list = [
 ];
 
 function App() {
-  return(
+  return (
     <div>
-      <h1>Hello {title} {welcome.greeting} {welcome.title}</h1>
-      <h2>{getTitle('React')}</h2>
-      <h3>{element}</h3>
-      <label htmlFor='search'>Search: </label>
-      <input id='search' type="text" />
-    </div>    
+      <h1>My Hacker Stories</h1>
+
+      <label htmlFor="search">Search: </label>
+      <input id="search" type="text" />
+      <hr />
+        {list.map(function(item) {
+          return (
+          <div key={item.objectID}>
+          {/* リストにkeyを割り当て可能 */}
+            <span>
+              <a href={item.url}>{item.title}</a>  
+            </span>
+            <span>{item.author}</span>
+            <span>{item.num_comments}</span>
+            <span>{item.points}</span>
+          </div>
+          );
+        })}
+    </div>
   );
 }
-
 export default App;
