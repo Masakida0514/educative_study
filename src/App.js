@@ -1,4 +1,8 @@
-import React from 'react';
+import * as React from 'react';
+
+function getTitle(title) {
+  return title;
+}
 
 const list = [
   {
@@ -17,30 +21,46 @@ const list = [
     points: 5,
     objectID: 1,
   },
+  {
+    title: 'Redux',
+    url: 'https://redux.js.org/',
+    author: 'Dan Abramov, Andrew Clark',
+    num_comments: 2,
+    points: 5,
+    objectID: 1,
+  },
 ];
+
+// We'll split some of responsibilities into a Standalone List Component
+// React Components = App + List
 
 function App() {
   return (
     <div>
+      <h1>Hello {getTitle('React')}</h1>
       <h1>My Hacker Stories</h1>
 
       <label htmlFor="search">Search: </label>
       <input id="search" type="text" />
       <hr />
-        {list.map(function(item) {
-          return (
-          <div key={item.objectID}>
-          {/* リストにkeyを割り当て可能 */}
-            <span>
-              <a href={item.url}>{item.title}</a>  
-            </span>
-            <span>{item.author}</span>
-            <span>{item.num_comments}</span>
-            <span>{item.points}</span>
-          </div>
-          );
-        })}
+      <List />
     </div>
   );
 }
+
+function List() {
+  return list.map(function(item){
+    return (
+      <div key = {item.objectID}>
+        <span>
+          <a href={item.url}>{item.title}</a>
+        </span>
+        <span>{item.author}</span>
+        <span>{item.num_comments}</span>
+        <span>{item.points}</span>
+      </div>
+    );
+  });
+}
+
 export default App;
