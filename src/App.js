@@ -1,5 +1,7 @@
 import React from 'react';
 
+// グローバル変数
+// 今回はapp内で変数を定義し、他のクラスに渡す：Props
 const list = [
   {
     title: 'React',
@@ -19,12 +21,26 @@ const list = [
   },
 ];
 
-
-// onChangeはブラウザのinputの変化をリアルタイムでlogに流す
-// 流れたログの値を取得して、アプリに活かす
-// onChangeは”ハンドラーと呼ばれる”
-// ハンドラーはreturnに関数を渡さない限り、関数で定義する
 const App = () => {
+const stories = [
+  {
+    title: 'React',
+    url: 'https://reactjs.org/',
+    author: 'Jordan Walke',
+    num_comments: 3,
+    points: 4,
+    objectID: 0,
+  },
+  {
+    title: 'Redux',
+    url: 'https://redux.js.org/',
+    author: 'Dan Abramov, Andrew Clark',
+    num_comments: 2,
+    points: 5,
+    objectID: 1,
+  },
+];
+
   const handleChange = event => {
     console.log(event.target.value);
   };
@@ -38,8 +54,8 @@ const App = () => {
       <input id="search" type="text" onChange={handleChange}/>
 
       <hr />
-
-      <List />
+      {/* List()にlistとしてstoriesをpropsしてる */}
+      <List list = {stories}/>
     </div>
   );
 }
