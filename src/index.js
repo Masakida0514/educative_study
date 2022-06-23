@@ -9,7 +9,7 @@ import * as serviceWorker from './serviceWorker';
 // 2 aruguments: 1st render JSX, simple app component without any component instatntiation
 // the 2nd : where the React App enters your HTML
 ReactDOM.render(
-  <h1>Hello React World</h1>,
+  <App />,
   document.getElementById('root')
 );
 // If you want your app to work offline and load faster, you can change
