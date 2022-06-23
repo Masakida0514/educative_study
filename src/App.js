@@ -16,36 +16,6 @@ class Developer {
   }
 }
 
-const list = [
-  {
-    title: 'React',
-    url: 'https://reactjs.org/',
-    author: 'Jordan Walke',
-    num_comments: 3,
-    points: 4,
-    objectID: 0,
-  },
-  {
-    title: 'Redux',
-    url: 'https://redux.js.org/',
-    author: 'Dan Abramov, Andrew Clark',
-    num_comments: 2,
-    points: 5,
-    objectID: 1,
-  },
-  {
-    title: 'Redux',
-    url: 'https://redux.js.org/',
-    author: 'Dan Abramov, Andrew Clark',
-    num_comments: 2,
-    points: 5,
-    objectID: 1,
-  },
-];
-
-// We'll split some of responsibilities into a Standalone List Component
-// React Components = App + List
-
 function App() {
   return (
     <div>
@@ -56,15 +26,11 @@ function App() {
       <input id="search" type="text" />
       <hr />
       <List />
+      <List />
     </div>
   );
 }
 
-
-// 大きなreact appはHierarchies componentを持つ
-// これをcomponent treesと言う
-// App：root　Component
-// List：leaf component / sibling components
 function List() {
 
   const robin = new Developer('Robin', 'Masaki');
@@ -78,9 +44,6 @@ function List() {
   );
 
 }
-
-
-
 
 
 export default App;
