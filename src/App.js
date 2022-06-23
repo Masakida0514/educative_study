@@ -4,6 +4,18 @@ function getTitle(title) {
   return title;
 }
 
+// Add Class
+class Developer {
+  constructor(firstName, lastName) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+  }
+
+  getName() {
+    return this.firstName + ' ' + this.lastName;
+  }
+}
+
 const list = [
   {
     title: 'React',
@@ -48,19 +60,27 @@ function App() {
   );
 }
 
+
+// 大きなreact appはHierarchies componentを持つ
+// これをcomponent treesと言う
+// App：root　Component
+// List：leaf component / sibling components
 function List() {
-  return list.map(function(item){
-    return (
-      <div key = {item.objectID}>
-        <span>
-          <a href={item.url}>{item.title}</a>
-        </span>
-        <span>{item.author}</span>
-        <span>{item.num_comments}</span>
-        <span>{item.points}</span>
-      </div>
-    );
-  });
+
+  const robin = new Developer('Robin', 'Masaki');
+  const denis = new Developer('Dennis', 'Masatoshi');
+    
+  return (
+    <div>
+      {robin.getName()};
+      {denis.getName()};
+    </div>
+  );
+
 }
+
+
+
+
 
 export default App;
