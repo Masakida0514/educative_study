@@ -19,18 +19,30 @@ const list = [
   },
 ];
 
-const App = () => (
-  <div>
-    <h1>Masaki Mori 的な something</h1>
 
-    <label htmlFor='search'>検索: </label>
-    <input id="search" type="text" />
+// onChangeはブラウザのinputの変化をリアルタイムでlogに流す
+// 流れたログの値を取得して、アプリに活かす
+// onChangeは”ハンドラーと呼ばれる”
+// ハンドラーはreturnに関数を渡さない限り、関数で定義する
+const App = () => {
+  const handleChange = event => {
+    console.log(event.target.value);
+  };
 
-    <hr />
 
-    <List />
-  </div>
-)
+  return (
+    <div>
+      <h1>Masaki Mori 的な something</h1>
+
+      <label htmlFor='search'>検索: </label>
+      <input id="search" type="text" onChange={handleChange}/>
+
+      <hr />
+
+      <List />
+    </div>
+  );
+}
 
 
 const List = () => 
