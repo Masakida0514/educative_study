@@ -1,9 +1,5 @@
 import React from 'react';
 
-// Appから、SearchにhandleSearchを渡す。名前はonSearch
-// だからSearchではprops.onSearch
-// Appでは別の関数を設定しており、コールバックハンドラとなる？？？
-
 const App = () => {
   const stories = [
     {
@@ -24,39 +20,38 @@ const App = () => {
     },
   ];
 
+  
+  const [searchTerm, setSearchTerm] = React.useState('');
+  
   const handleSearch = event => {
-    console.log(event.target.value);
+    setSearchTerm(event.target.value);
   };
 
+  // JavaScript built-in function: filter
+  // 関数を引数に取り、各要素に対してtrueの場合のみ抽出する
+  // 今回は、各要素を小文字化、searchTermが含まれている場合trueを返す関数
+  const searchedStories = stories.filter(story => 
+    story.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+  
   return (
     <div>      
       <h1>Masaki Mori 的な something</h1>
       <Search onSearch = {handleSearch} />
       <hr />
-      <List list = {stories}/>
-    </div>
-  );
-}
-
-const Search = props => {
-  const [searchTerm, setSearchTerm] = React.useState('');
-
-  const handleChange = event => {
-    setSearchTerm(event.target.value);
-    props.onSearch(event);
-  };
-
-  return (
-    <div>
-      <label htmlFor='search'>検索: </label>
-      <input id="search" type="text" onChange={handleChange}/>
-
-      <p>
-        Searching for <strong>{searchTerm}</strong>.
-      </p>
+      <List list = {searchedStories} />
     </div>
   );
 };
+
+const Search = props => (
+  <div>
+    <label htmlFor="search">検索してね: </label>
+  
+    <input id="search" type="text" onChange={props.onSearch} />
+  </div>
+);
+
 
 const List = props => 
   props.list.map(item => (
