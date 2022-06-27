@@ -1,7 +1,8 @@
 import React from 'react';
 
-// React Props : コンポーネントツリーに情報を渡す際に使う
-// React State : アプリケーションをインタラクティブにする際に使う
+// Appから、SearchにhandleSearchを渡す。名前はonSearch
+// だからSearchではprops.onSearch
+// Appでは別の関数を設定しており、コールバックハンドラとなる？？？
 
 const App = () => {
   const stories = [
@@ -23,35 +24,39 @@ const App = () => {
     },
   ];
 
-  // 便利な関数、useStateを使う
-  // これはReactからmanaging stateを取得する
-  // useStateは別名 hook を呼ばれる
-  const [searchTerm, setSearchTerm] = React.useState('');
-  // 1st termはcurrent stateを表す
-  // 2nd termは、このcurrent stateをupdateするstate
-
-  const handleChange = event => {
-    setSearchTerm(event.target.value);
+  const handleSearch = event => {
+    console.log(event.target.value);
   };
 
-
   return (
-    <div>
+    <div>      
       <h1>Masaki Mori 的な something</h1>
-
-      <label htmlFor='search'>検索: </label>
-      <input id="search" type="text" onChange={handleChange}/>
-
-      <p>
-        Searching for <strong>{searchTerm}</strong>.
-      </p>
-
+      <Search onSearch = {handleSearch} />
       <hr />
       <List list = {stories}/>
     </div>
   );
 }
 
+const Search = props => {
+  const [searchTerm, setSearchTerm] = React.useState('');
+
+  const handleChange = event => {
+    setSearchTerm(event.target.value);
+    props.onSearch(event);
+  };
+
+  return (
+    <div>
+      <label htmlFor='search'>検索: </label>
+      <input id="search" type="text" onChange={handleChange}/>
+
+      <p>
+        Searching for <strong>{searchTerm}</strong>.
+      </p>
+    </div>
+  );
+};
 
 const List = props => 
   props.list.map(item => (
@@ -64,7 +69,5 @@ const List = props =>
       <span>{item.points}</span>
     </div>
   ));
-
-
 
 export default App;
